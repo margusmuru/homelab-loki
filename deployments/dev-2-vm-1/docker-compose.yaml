@@ -1,0 +1,23 @@
+---
+volumes:
+  loki-dev-2-vm-1-data:
+    driver: local
+services:
+  loki:
+    container_name: loki
+    image: grafana/loki:3.5.7
+    command: "-config.file=/etc/loki/config.yaml"
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config/config.yaml:/etc/loki/config.yaml:ro
+      - loki-dev-2-vm-1-data:/loki:rw
+    restart: unless-stopped
+    networks:
+      - grafana
+networks:
+  grafana:
+    name: grafana
+    driver: bridge
+    external: true
+    attachable: true
