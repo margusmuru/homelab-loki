@@ -9,13 +9,15 @@ server:
 limits_config:
   # Increase the Ingestion Rate Limit so Loki would be able to handle larger logs amount
   # The rate is calculated per second!
+  # Defaults: 4 and 6
   ingestion_rate_mb: 40
   ingestion_burst_size_mb: 80
   # Increase stream rate limit. Single stream is data matchin specific labels, eg "service_name"
-  # Note. 50 and 100 are very large number, much much higher than default
+  # Defaults: 3MB and 15MB
   per_stream_rate_limit: 50MB
   per_stream_rate_limit_burst: 100MB
   # Increase limit for single log line size
+  # Defaults: 256KB
   max_line_size: 52428800 # 50MB
 
 common:
