@@ -19,6 +19,8 @@ limits_config:
   # Increase limit for single log line size
   # Defaults: 256KB
   max_line_size: 52428800 # 50MB
+  # Data retention setting. This depends on compactor settings!
+  retention_period: 48h
 
 common:
   instance_addr: 127.0.0.1
@@ -31,6 +33,14 @@ common:
   ring:
     kvstore:
       store: inmemory
+
+compactor:
+  working_directory: /data/retention
+  compaction_interval: 10m
+  retention_enabled: true
+  retention_delete_delay: 2h
+  retention_delete_worker_count: 150
+  delete_request_store: gcs
 
 schema_config:
   configs:
