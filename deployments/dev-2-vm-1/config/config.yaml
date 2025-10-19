@@ -2,6 +2,9 @@ auth_enabled: false
 
 server:
   http_listen_port: 3100
+  # increase allowed message size if you run into "grpc: received message larger than max"
+  grpc_server_max_recv_msg_size: 33554432  # 32MB
+  grpc_server_max_send_msg_size: 33554432  # 32MB
 
 common:
   instance_addr: 127.0.0.1
